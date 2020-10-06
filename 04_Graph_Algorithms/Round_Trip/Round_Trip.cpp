@@ -6,11 +6,9 @@ int n, m, a, b;
 vector<vector<int> > G(maxn);
 int vis[maxn];
 vector<int> ans;
-int d;
 
 bool dfs(int u, int dep) {
     vis[u] = dep;
-    d = max(d, dep);
     for(auto v : G[u]) {
         if(vis[v] && vis[u] - vis[v] >= 2) {
             ans.push_back(v);
@@ -37,10 +35,9 @@ int main() {
     }
 
     bool t = false;
-    int dep = 1;
     for(int v = 0; v < n; v++) {
         if(!vis[v])
-            if(t = dfs(v, d + 3))
+            if(t = dfs(v, 1))
                 break;
     }
     if(!t) {
