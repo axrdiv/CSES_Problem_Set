@@ -26,7 +26,6 @@ void dfs_downward(int s, int e) {
 
 void dfs_upward(int s, int e) {
     dp[1][s] = 1;
-    // if(e) dp[0][s] = dp[0][e] + dp[1][e] + dp[2][e] + dp[3][e] - dp[2][s] - dp[3][s];
     if(e) dp[0][s] = dp[0][e] + dp[1][e] + dp[2][e] - dp[2][s] - dp[3][s] + dp[3][e] - dp[3][s] - 1;
     if(e) dp[1][s] += dp[1][e] + dp[3][e] - dp[3][s] - 1;
 
@@ -49,7 +48,6 @@ int main() {
     dfs_upward(1, 0);
 
     for(int i = 1; i <= n; i++) {
-        // cout << dp[0][i] << " " << dp[2][i] << endl; //(i == n ? '\n' : ' ');
         cout << dp[0][i] + dp[2][i] << (i == n ? '\n' : ' ');
     }
 
