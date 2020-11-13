@@ -7,19 +7,17 @@ int n, q;
 int x, k;
 
 int succ(int x, int l) {
-    if(x == 0) return 0;
+    if(!(x&&l)) return tsucc[l][x];
     if(tsucc[l][x]) return tsucc[l][x];
-    if(l == 0) return tsucc[l][x];
     return tsucc[l][x] = succ(succ(x, l-1), l-1);
 }
 
 int qsucc(int x, int k, int l) {
-    if(x == 0) return 0;
+    if(!x) return 0;
     if((1<<l) > k) return x;
     x = qsucc(x, k, l+1);
-    if((1<<l) & k) {
+    if((1<<l) & k)
         return succ(x, l);
-    }
     else
         return x;
 }
