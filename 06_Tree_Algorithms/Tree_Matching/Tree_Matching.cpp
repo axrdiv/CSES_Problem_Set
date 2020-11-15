@@ -11,7 +11,7 @@ int dp[2][maxn];
  * 0 means won't select it,
  * 1 means select it as edge's first node;
  * dp[0][s] = sum(max(dp[0][u], dp[1][u]))
- * dp[1][s] = max(dp[0][u_1] + max(dp[0][u_2], dp[1][u_2])) + 1;
+ * dp[1][s] = max(dp[0][u_1] + sum max(dp[0][u_2], dp[1][u_2])) + 1;
  */
 void dfs(int s, int e) {
     dp[0][s] = 0;

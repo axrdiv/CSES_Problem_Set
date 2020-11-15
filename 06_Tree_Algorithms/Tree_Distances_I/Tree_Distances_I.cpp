@@ -6,7 +6,6 @@ const int maxn = 2 * 1e5 + 5;
 int dp[3][maxn];
 int n, a, b;
 vector<int> adj[maxn];
-bool vis[maxn];
 
 void dfs_downwards(int s, int e) {
     dp[0][s] = 0;
