@@ -22,6 +22,7 @@ int main() {
             if(l == p) l++;
             if(r == p) r--;
 
+            if(l == r) break;
             if(vec[l].first + vec[r].first < t) l++;
             else if(vec[l].first + vec[r].first > t) r--;
             else {
