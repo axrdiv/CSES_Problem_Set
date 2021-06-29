@@ -1,12 +1,13 @@
 #include<cstdio>
 #include<cstring>
 #include<algorithm>
+#include<map>
 using namespace std;
 const int maxn = 2 * 1e5 + 5;
 
-int n, m, un;
-int h[maxn], uniq[maxn], cnt[maxn];
-int t, p;
+int n, m, un, t;
+int h[maxn], uniq[maxn];
+map<int, int> cnt;
 
 int main() {
     scanf("%d%d", &n, &m);
@@ -17,22 +18,21 @@ int main() {
     un = unique(uniq, uniq + n) - uniq;
 
     for(int i = 0, j = 0; i < n && j < un; i++) {
-        if(h[i] != uniq[j]) j++;
-        cnt[j]++;
+        if(h[i] != uniq[j]) cnt[uniq[++j]] = 0;
+        cnt[uniq[j]]++;
     }
 
     for(int i = 0; i < m; i++) {
         scanf("%d", &t);
-        p = upper_bound(uniq, uniq + un, t) - uniq;
-        p--;
-        while(p >= 0 && !cnt[p]) p--;
-        if(p >= 0 && cnt[p]) {
-            cnt[p]--;
-            printf("%d\n", uniq[p]);
+        if(cnt.size()) {
+            auto p = cnt.upper_bound(t);
+            if(p-- != cnt.begin() && p->second) {
+                printf("%d\n", p->first);
+                if(--(p->second) == 0) { cnt.erase(p); }
+            }
+            else printf("-1\n");
         }
-        else {
-            printf("-1\n");
-        }
+        else printf("-1\n");
     }
 
     return 0;
