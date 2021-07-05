@@ -1,3 +1,9 @@
+/* Flight Discount
+ *
+ * nodiscount(1, u) = min(nodiscount(1, v) + w(v, u))
+ * discount(1, u) = min(min(nodiscount(1, v) + w(v, u) / 2), min(discount(1, v) + w(v, u)))
+ *
+ */
 #include<iostream>
 #include<vector>
 #include<queue>
